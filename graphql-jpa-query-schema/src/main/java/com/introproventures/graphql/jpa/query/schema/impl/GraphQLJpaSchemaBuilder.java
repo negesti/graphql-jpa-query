@@ -41,6 +41,7 @@ import javax.persistence.metamodel.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.introproventures.graphql.jpa.query.annotation.GraphQLDescription;
 import com.introproventures.graphql.jpa.query.annotation.GraphQLIgnore;
 import com.introproventures.graphql.jpa.query.annotation.GraphQLIgnoreFilter;
 import com.introproventures.graphql.jpa.query.annotation.GraphQLIgnoreOrder;
@@ -404,7 +405,7 @@ public class GraphQLJpaSchemaBuilder implements GraphQLSchemaBuilder {
                                                .collect(Collectors.toList())
             )
             .fields(managedType.getAttributes().stream()
-                                               .filter(this::isValidAssociation)    
+                                               .filter(Attribute::isAssociation)    
                                                .filter(this::isNotIgnored)
                                                .filter(this::isNotIgnoredFilter)
                                                .map(this::getWhereInputRelationField)
