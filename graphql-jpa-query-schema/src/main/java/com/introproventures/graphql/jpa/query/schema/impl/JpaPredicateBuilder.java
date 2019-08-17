@@ -735,8 +735,10 @@ class JpaPredicateBuilder {
                 
                 Predicate in = join.in(value);
                 
-                if(filter.getCriterias().contains(PredicateFilter.Criteria.NIN))
+                if(filter.getCriterias().contains(PredicateFilter.Criteria.NIN) 
+                   || filter.getCriterias().contains(PredicateFilter.Criteria.NE)) {
                    return cb.not(in);
+                }
                         
                 return in;
             }
